@@ -3,3 +3,9 @@
     {{form.as_p}}
     <button class="button" type="submit"> Submit</button>
 </form>
+
+{% if messages %}
+{%for message in messages%}
+{{message}}
+{%endfor%}
+{% endif %}

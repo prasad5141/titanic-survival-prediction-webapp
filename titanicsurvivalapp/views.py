@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from .forms import *
 from django.contrib import messages
+from .models import *
 # Create your views here.
 
 def home(request):
@@ -15,7 +16,8 @@ def home(request):
 def predict(request):
     if request.method == "GET":
         form = InputForm()
-        return render(request, 'predict.html', {"form":form})
+        history = History.objects.all()
+        return render(request, 'predict.html', {"form":form, 'history':history})
     if request.method == "POST":
         form = InputForm(request.POST)
         print(request.POST.get('gender'))
@@ -28,18 +30,27 @@ def predict(request):
             else:
                 Sex_male = 1
             input_data = [request.POST.get('passenger_class'), request.POST.get('age'), Sex_female, Sex_male ]
+            h = History.objects.create(name=request.POST.get('name'), age=request.POST.get('age'), passenger_class=int(request.POST.get('passenger_class')), gender=form['gender'].value())
             print(input_data)
             data = pd.Series(input_data, index=['Pclass','Age', 'Sex_female', 'Sex_male'])
             print(data)
             titanic_model = pickle.load(open("random_forest_titanic.pkl", "rb"))
             result = titanic_model.predict([data])
             print(result)
+            h.survived = result
             if result == 0:
                 print("inside o")
                 msg = "Sorry {} Cannot survive".format(request.POST.get('name'))
                 messages.success(request, msg)
+                h.survived = False
             if result == 1:
                 print("inside 1")
                 msg = "Good luck {}, survive".format(request.POST.get('name'))
                 messages.success(request, msg)
-            return render(request, 'predict.html', {"form":form})
+                h.survived = True
+            h.save()
+            history = History.objects.all()
+            # context = {
+            #     "history":history
+            # }
+            return render(request, 'predict.html', {"form":form, 'history':history})

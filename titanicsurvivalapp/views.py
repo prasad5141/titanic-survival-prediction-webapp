@@ -22,14 +22,17 @@ def predict(request):
         if form.is_valid():
             Sex_female = 0
             Sex_male = 0
-            if form['gender'].value() == 0:
+            print(type(form['gender'].value()))
+            if form['gender'].value() == '0':
                 Sex_female = 1
             else:
                 Sex_male = 1
-            input_data = [[request.POST.get('passenger_class'), request.POST.get('age'), Sex_female, Sex_male ]]
-            data = pd.DataFrame(input_data, columns=['Pclass','Age', 'Sex_female', 'Sex_male'])
-            titanic_model = pickle.load(open("titanic.pkl", "rb"))
-            result = titanic_model.predict(data)
+            input_data = [request.POST.get('passenger_class'), request.POST.get('age'), Sex_female, Sex_male ]
+            print(input_data)
+            data = pd.Series(input_data, index=['Pclass','Age', 'Sex_female', 'Sex_male'])
+            print(data)
+            titanic_model = pickle.load(open("random_forest_titanic.pkl", "rb"))
+            result = titanic_model.predict([data])
             print(result)
             if result == 0:
                 print("inside o")

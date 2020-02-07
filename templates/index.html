@@ -20,10 +20,15 @@
   <div class="content">
     <div class="container wow fadeInUp delay-03s">
       <div class="row">
-        <div class="logo text-center">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+              <div class="logo text-center">
           <img src="{% static 'img/logo.png' %}" alt="logo" width="150">
-          <h2>Titanic Disaster Survival Prediction Webapp</h2>
+          <h2 style="margin-left:25px; text-align:center;">Titanic Disaster Survival Prediction Webapp</h2>
         </div>
+
+      </div>
 
         <!-- <div id="countdown" data-wow-delay=".3s" data-date="Dec 26, 2016 06:00:00"></div> -->
         <!-- <h2 class="subs-title text-center">Subscribe now to get Recent updates!!!</h2> -->
@@ -41,25 +46,26 @@
     </div>
 
 
-  <form class="form-horizontal">
+  <form class="form-horizontal" method="post" action="{% url 'predict'%}">
+  {% csrf_token %}
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
+      <label class="control-label col-sm-2" for="email">Name:</label>
       <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
+        <input type="text" class="form-control" name="name" id="email" placeholder="Enter name" style="font-size:18px;">
       </div>
 
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Age:</label>
       <div class="col-sm-8">
-        <input type="age" class="form-control" id="age" placeholder="Enter age">
+        <input type="age" class="form-control" id="age" name="age"placeholder="Enter age" style="font-size:18px;">
       </div>
 
     </div>
     <div class="form-group">
       <label for="exampleFormControlSelect1" class=" control-label col-sm-2">Gender</label>
       <div class="col-sm-8">
-      <select class="form-control" id="gender">
+      <select class="form-control" id="gender" name="gender" style="font-size:20px; height:32px;">
         <option>Male</option>
         <option>Female</option>
       </select>
@@ -68,7 +74,7 @@
     <div class="form-group">
       <label for="exampleFormControlSelect1"  class=" control-label col-sm-2">Class</label>
       <div class="col-sm-8">
-      <select class="form-control" id="class">
+      <select class="form-control" id="class" name="passenger_class" style="font-size:20px;height:32px;">
         <option>Class 1</option>
         <option>Class 2</option>
         <option>Class 3</option>
@@ -77,8 +83,9 @@
     </div>
     </div>
 
-  
-<input type="submit" class="success">
+    <div class="col-md-4 col-sm-offset-4 text-center"> 
+      <button id="button" name="button" style="color:black; margin-top:20px;" class="btn btn-lg">Submit</button> 
+    </div>
   </form>
 
     <!-- <section>
@@ -122,10 +129,7 @@
   </footer> -->
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
-  <script src="{% static 'js/wow.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
-  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src="{% static 'js/webapp.js' %}"></script>
 
 </body>
 

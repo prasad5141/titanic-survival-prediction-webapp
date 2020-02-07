@@ -43,7 +43,7 @@ q:before, q:after {
 .logo h2
 {
 	font-family: 'Lobster', cursive;
-	font-size: 80px;
+	font-size: 50px;
     padding-top: 40px;
 }
 /* #countdown {
@@ -106,7 +106,7 @@ q:before, q:after {
 }
 .img i
 {
-	font-size: 80px;
+	font-size: 50px;
 }
 /* .subcription-info 
 {
@@ -322,3 +322,8 @@ body{
         margin: 0 auto;
 }
 } */
+
+.text-center {
+    text-align: center !important;
+  }
+  

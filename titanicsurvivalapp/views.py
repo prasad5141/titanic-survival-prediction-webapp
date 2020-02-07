@@ -14,6 +14,7 @@ def home(request):
     return render(request, 'home.html')
 
 def predict(request):
+    print(request.method)
     if request.method == "GET":
         form = InputForm()
         history = History.objects.all()
@@ -21,15 +22,26 @@ def predict(request):
     if request.method == "POST":
         form = InputForm(request.POST)
         print(request.POST.get('gender'))
+        print(request.POST.get('age'))
+        print(request.POST.get('name'))
+        print(request.POST.get('passenger_class'))
         if form.is_valid():
+            print('inside valid form')
             Sex_female = 0
             Sex_male = 0
             print(type(form['gender'].value()))
-            if form['gender'].value() == '0':
+            if form['gender'].value() == 'Female':
                 Sex_female = 1
             else:
                 Sex_male = 1
-            input_data = [request.POST.get('passenger_class'), request.POST.get('age'), Sex_female, Sex_male ]
+
+            if form['passenger_class'].value() == 'Class 1':
+                Pclass = 1
+            elif form['passenger_class'].value() == 'Class 2':
+                Pclass = 2
+            else:
+                Pclass = 3
+            input_data = [Pclass, request.POST.get('age'), Sex_female, Sex_male ]
             h = History.objects.create(name=request.POST.get('name'), age=request.POST.get('age'), passenger_class=int(request.POST.get('passenger_class')), gender=form['gender'].value())
             print(input_data)
             data = pd.Series(input_data, index=['Pclass','Age', 'Sex_female', 'Sex_male'])

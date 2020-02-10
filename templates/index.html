@@ -20,29 +20,30 @@
   <div class="content">
     <div class="container wow fadeInUp delay-03s">
       <div class="row">
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-6">
-              <div class="logo text-center">
-          <img src="{% static 'img/logo.png' %}" alt="logo" width="150">
-          <h2 style="margin-left:25px; text-align:center;">Titanic Disaster Survival Prediction Webapp</h2>
+        <div class="col-sm-12">
+          <ul id="menu">
+            <li>
+              <h3>Home</h3>
+            </li>
+            <li>
+              <h3>History</h3>
+            </li>
+            <li>
+              <h3>About</h3>
+            </li>
+
+          </ul>
         </div>
-
       </div>
-
-        <!-- <div id="countdown" data-wow-delay=".3s" data-date="Dec 26, 2016 06:00:00"></div> -->
-        <!-- <h2 class="subs-title text-center">Subscribe now to get Recent updates!!!</h2> -->
-        <!-- <div class="subcription-info text-center">
-          <form class="subscribe_form" action="#" method="post">
-            <input required="" value="" placeholder="Enter your Name..." class="email" id="email" name="email" type="email">
-            <input required="" value="" placeholder="Enter your Age..." class="age" id="age" name="age" type="number">
-            <input required="" value="" placeholder="Enter your Name..." class="email" id="email" name="email" type="email">
-            <input required="" value="" placeholder="Enter your Name..." class="email" id="email" name="email" type="email">
-
-            <input class="subscribe" name="email" value="Subscribe!" type="submit">
-          </form>
-          <p class="sub-p">We Promise to never span you.</p>
-        </div> -->
+      <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+                <div class="logo text-center">
+            <!-- <img src="{% static 'img/titanic_transparent.jpeg' %}" alt="logo" width="150"> -->
+            <h2 style="margin-left:25px; text-align:center;">Titanic Disaster Survival Prediction Webapp</h2>
+          </div>
+        </div>
     </div>
 
 
@@ -88,44 +89,26 @@
     </div>
   </form>
 
-    <!-- <section>
-      <div class="container">
-        <div class="row bort text-center">
-          <div class="social">
-            <ul>
-              <li>
-                <a href=""><i class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa fa-linkedin"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section> -->
-  <!-- <footer class="footer">
-    <div class="container">
-      <div class="row bort">
 
-        <div class="copyright">
-          © Copyright Maundy Theme. All rights reserved.
-          <div class="credits">
-            <!--
-              All the links in the footer should remain intact. 
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Maundy
-            -->
-            <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
-          </div>
-        </div>
 
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <div class="result animated fadeInUp">
+          <h2 style="color: white;">Good luck prasad, survive</h2>
+        </div>
+            {% if messages %}
+              {%for message in messages%}
+                {{message}}
+              {%endfor%}
+            {% endif %} 
+      </div>
+  </div>
+
   </footer> -->
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -134,3 +117,11 @@
 </body>
 
 </html>
+
+
+
+{% for h in history %}
+{{h.name}}
+{{h.age}}
+{{h.gender}}
+{% endfor %}

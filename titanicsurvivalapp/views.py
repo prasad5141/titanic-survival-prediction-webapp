@@ -42,25 +42,23 @@ def predict(request):
             else:
                 Pclass = 3
             input_data = [Pclass, request.POST.get('age'), Sex_female, Sex_male ]
-            h = History.objects.create(name=request.POST.get('name'), age=request.POST.get('age'), passenger_class=int(request.POST.get('passenger_class')), gender=form['gender'].value())
-            print(input_data)
+            print("printing input data", input_data)
             data = pd.Series(input_data, index=['Pclass','Age', 'Sex_female', 'Sex_male'])
             print(data)
             titanic_model = pickle.load(open("random_forest_titanic.pkl", "rb"))
             result = titanic_model.predict([data])
             print(result)
-            h.survived = result
+            h = History.objects.create(name=request.POST.get('name'), age=request.POST.get('age'), passenger_class=Pclass, gender=form['gender'].value(), survived=False)
             if result == 0:
                 print("inside o")
                 msg = "Sorry {} Cannot survive".format(request.POST.get('name'))
                 messages.success(request, msg)
-                h.survived = False
             if result == 1:
                 print("inside 1")
                 msg = "Good luck {}, survive".format(request.POST.get('name'))
                 messages.success(request, msg)
                 h.survived = True
-            h.save()
+                h.save()
             history = History.objects.all()
             # context = {
             #     "history":history

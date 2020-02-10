@@ -339,25 +339,26 @@ body{
   box-shadow: 5px 5px 5px  rgb(211, 44, 44);
 
 }
+
+.headbutton{
+  
+}
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333333;
   }
-  li {
-    float: left;
+li {
+    float: right;
+    margin-left: 150px;
   }
   
-  li a {
-    display: block;
-    color: white;
+  
+  li:hover {
+    border-radius: 25px;
+    /* width: 130px; */
+    border: 2px solid white;
     text-align: center;
-    padding: 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111111;
+    
   }    

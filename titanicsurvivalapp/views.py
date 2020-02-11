@@ -55,7 +55,7 @@ def predict(request):
                 messages.success(request, msg)
             if result == 1:
                 print("inside 1")
-                msg = "Good luck {}, survive".format(request.POST.get('name'))
+                msg = "{} , you are Lucky, You could have been survive.".format(request.POST.get('name'))
                 messages.success(request, msg)
                 h.survived = True
                 h.save()
